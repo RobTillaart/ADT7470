@@ -9,7 +9,7 @@
 #include <Wire.h>
 #include "ADT7470.h"
 
-ADT7470 ADT(10);
+ADT7470 ADT(ADT7470_ADDR_FLOAT);
 
 void setup()
 {
