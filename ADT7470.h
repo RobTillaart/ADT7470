@@ -18,7 +18,15 @@
 #ifndef ADT7470_TIMEOUT
 #define ADT7470_TIMEOUT             1000
 #endif
-
+#ifndef ADT7470_ADDR_HIGH
+#define ADT7470_ADDR_HIGH           0x2F
+#endif
+#ifndef ADT7470_ADDR_LOW
+#define ADT7470_ADDR_LOW            0x2C
+#endif
+#ifndef ADT7470_ADDR_FLOAT
+#define ADT7470_ADDR_FLOAT          0x2E
+#endif
 
 class ADT7470
 {
