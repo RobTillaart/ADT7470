@@ -421,7 +421,7 @@ uint16_t ADT7470::getReg16(uint8_t reg)
   uint8_t h, l;
   _read(reg, &l);
   _read(reg + 1, &h);
-  return (((uint16_t)h) << 8) & l;
+  return (((uint16_t)h) << 8) | l;
 }
 
 void ADT7470::setReg16(uint8_t reg, uint16_t val)
