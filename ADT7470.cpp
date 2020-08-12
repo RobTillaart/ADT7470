@@ -280,6 +280,7 @@ uint32_t ADT7470::getRPM(uint8_t idx)
   uint16_t mpm = 60;
   if (fasttach) mpm *= 4;
   uint16_t tach = getTach(idx);
+  if (tach == 0xFFFF) return 0; //stall,error,damage,or too slow to count
   if (tach != 0) return (clock * mpm) / tach;  // P24   // TODO rounding error?
   return 0;
 }
