@@ -268,7 +268,7 @@ void ADT7470::setSlowTach()
 uint16_t ADT7470::getTach(uint8_t idx)
 {
   if (idx >= 4) return 0;
-  return getReg16(ADT7470_TACH_BASE + idx);
+  return getReg16(ADT7470_TACH_BASE + idx * 2);
 }
 
 uint32_t ADT7470::getRPM(uint8_t idx)
