@@ -274,15 +274,9 @@ uint16_t ADT7470::getTach(uint8_t idx)
 uint32_t ADT7470::getRPM(uint8_t idx)
 {
   if (idx >= 4) return 0;
-  // measurements per minute depends on fasttach bit  
-  bool fasttach = getReg8(ADT7470_CONFIG_REGISTER_1) & ADT7470_FAST_TACH;
-  uint32_t clock = 90000UL;
-  uint16_t mpm = 60;
-  if (fasttach) mpm *= 4;
   uint16_t tach = getTach(idx);
-  if (tach == 0xFFFF) return 0; //stall,error,damage,or too slow to count
-  if (tach != 0) return (clock * mpm) / tach;  // P24   // TODO rounding error?
-  return 0;
+  if (tach == 0xFFFF) return 0;
+  return (90000 * 60) / tach;
 }
 
 
