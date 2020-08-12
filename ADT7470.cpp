@@ -243,7 +243,7 @@ bool ADT7470::setPulsesPerRevolution(uint8_t idx, uint8_t val)
   uint8_t reg;
   _read(ADT7470_FAN_PPR_REGISTER, &reg);
   reg &= ~mask;
-  reg |= (val << (idx * 2));
+  reg |= ((val - 1) << (idx * 2));
   _write(ADT7470_FAN_PPR_REGISTER, reg);
   return true;
 }
