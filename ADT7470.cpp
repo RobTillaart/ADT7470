@@ -251,8 +251,8 @@ bool ADT7470::setPulsesPerRevolution(uint8_t idx, uint8_t val)
 uint8_t ADT7470::getPulsesPerRevolution(uint8_t idx)
 {
   if (idx >= 4) return 0;
-  uint8_t reg = getReg8(ADT7470_FAN_PPR_REGISTER + idx);
-  return (reg >> (idx * 2)) & 0x03;
+  uint8_t reg = getReg8(ADT7470_FAN_PPR_REGISTER);
+  return ((reg >> (idx * 2)) & 0x03) + 1;
 }
 
 void ADT7470::setFastTach()
