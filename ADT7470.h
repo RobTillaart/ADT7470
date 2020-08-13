@@ -2,7 +2,7 @@
 //
 //    FILE: ADT7470.h
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.1.0
+// VERSION: 0.1.1
 // PURPOSE: Arduino library for I2C ADT7470 Fan Monitoring
 //     URL: https://github.com/RobTillaart/ADT7470
 //          http://forum.arduino.cc/index.php?topic=363218.0
@@ -13,7 +13,7 @@
 #include "Arduino.h"
 #include "Wire.h"
 
-#define ADT7470_LIB_VERSION         "0.1.0"
+#define ADT7470_LIB_VERSION         "0.1.1"
 
 #ifndef ADT7470_TIMEOUT
 #define ADT7470_TIMEOUT             1000
@@ -73,9 +73,11 @@ public:
 
 
   // MEASURE FAN SPEED
-  // Page 23-24   idx = 0..3
+  // Page 23-24   idx = 0..3   val = 1..4
   bool     setPulsesPerRevolution(uint8_t idx, uint8_t val);
+  // returns 1..4
   uint8_t  getPulsesPerRevolution(uint8_t idx);
+  // P30 FST_TCH   fast = measurement/250 ms  slow = measurement/1000ms. 
   void     setFastTach();
   void     setSlowTach();
   uint16_t getTach(uint8_t idx);
