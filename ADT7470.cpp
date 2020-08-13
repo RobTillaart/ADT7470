@@ -243,7 +243,7 @@ bool ADT7470::setPulsesPerRevolution(uint8_t idx, uint8_t val)
   uint8_t reg;
   _read(ADT7470_FAN_PPR_REGISTER, &reg);
   reg &= ~mask;
-  reg |= (val << (idx * 2));
+  reg |= ((val - 1) << (idx * 2));
   _write(ADT7470_FAN_PPR_REGISTER, reg);
   return true;
 }
@@ -251,8 +251,8 @@ bool ADT7470::setPulsesPerRevolution(uint8_t idx, uint8_t val)
 uint8_t ADT7470::getPulsesPerRevolution(uint8_t idx)
 {
   if (idx >= 4) return 0;
-  uint8_t reg = getReg8(ADT7470_FAN_PPR_REGISTER + idx);
-  return (reg >> (idx * 2)) & 0x03;
+  uint8_t reg = getReg8(ADT7470_FAN_PPR_REGISTER);
+  return ((reg >> (idx * 2)) & 0x03) + 1;
 }
 
 void ADT7470::setFastTach()
@@ -268,20 +268,15 @@ void ADT7470::setSlowTach()
 uint16_t ADT7470::getTach(uint8_t idx)
 {
   if (idx >= 4) return 0;
-  return getReg16(ADT7470_TACH_BASE + idx);
+  return getReg16(ADT7470_TACH_BASE + idx * 2);
 }
 
 uint32_t ADT7470::getRPM(uint8_t idx)
 {
   if (idx >= 4) return 0;
-  // measurements per minute depends on fasttach bit  
-  bool fasttach = getReg8(ADT7470_CONFIG_REGISTER_1) & ADT7470_FAST_TACH;
-  uint32_t clock = 90000UL;
-  uint16_t mpm = 60;
-  if (fasttach) mpm *= 4;
   uint16_t tach = getTach(idx);
-  if (tach != 0) return (clock * mpm) / tach;  // P24   // TODO rounding error?
-  return 0;
+  if (tach == 0xFFFF) return 0;
+  return (90000 * 60) / tach;
 }
 
 
