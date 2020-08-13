@@ -61,7 +61,7 @@ of sensor idx. Temperature sensors are daisy chaned.
 - **setFanHighFreq(val = 0)** 
 - **setInvertPWM(idx)**
 - **getInvertPWM(idx)**
-- **setPulsesPerRevolution(idx, val)** A fan gives 1..4 pulses per revolution. 
+- **setPulsesPerRevolution(idx, val)** val should be 1..4 as a fan gives 1..4 pulses per revolution. 
 This valus is needed to calculate a correct tach and RPM.
 - **getPulsesPerRevolution(idx)** read back PulsePerRevolution. returns 1..4.
 - **setFastTach()** Tach register is updated 4x per second.
