@@ -1,7 +1,7 @@
 //
 //    FILE: ADT7470.cpp
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.1.0
+// VERSION: 0.1.1
 // PURPOSE: Arduino library for I2C ADT7470 Fan Monitoring
 //     URL: https://github.com/RobTillaart/ADT7470
 //          http://forum.arduino.cc/index.php?topic=363218.0
@@ -10,6 +10,7 @@
 // 0.0.00   2015-12-02 initial version
 // 0.0.01   2015-12-03 first beta
 // 0.1.0    2020-07-15 major refactor - first public version
+// 0.1.1    2020-08    fixes after testing
 
 #include "ADT7470.h"
 
@@ -238,6 +239,7 @@ uint8_t ADT7470::getInvertPWM(uint8_t idx)
 bool ADT7470::setPulsesPerRevolution(uint8_t idx, uint8_t val)
 {
   if (idx >= 4) return false;
+  if ((val == 0) || (val > 4)) return false;
   uint8_t mask = 0x03 << (idx * 2);
 
   uint8_t reg;
@@ -274,9 +276,14 @@ uint16_t ADT7470::getTach(uint8_t idx)
 uint32_t ADT7470::getRPM(uint8_t idx)
 {
   if (idx >= 4) return 0;
+  uint32_t clock = 90000UL;
+  uint16_t measurementsPerMinute = 60;
   uint16_t tach = getTach(idx);
+  // P23 stalling tach or very slow < 100 ==> 0xFFFF
   if (tach == 0xFFFF) return 0;
-  return (90000 * 60) / tach;
+  if (tach == 0) return 0;  // explicit prevents divide by zero
+  // formula P24            // tach/2 == integer rounding of division.
+  return (clock * measurementsPerMinute + tach/2) / tach;
 }
 
 

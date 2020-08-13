@@ -49,7 +49,8 @@ The interface consists of:
 - **stopMonitoring()**
 - **powerDown()** energy save mode
 - **powerUp()** active mode
-- **getTemperature(idx)** idx = 0..9; if connected. 
+- **getTemperature(idx)** idx = 0..9; if connected it returns the temperature 
+of sensor idx. Temperature sensors are daisy chaned.
 - **getMaxTemperature()** get max temperature of connected temperature sensors.
 - **setTemperatureLimit(idx, low, high)** for ALARM function
 - **getTemperatureLowLimit(idx)**
@@ -60,21 +61,21 @@ The interface consists of:
 - **setFanHighFreq(val = 0)** 
 - **setInvertPWM(idx)**
 - **getInvertPWM(idx)**
-- **setPulsesPerRevolution(idx, val)** A fan gives 1..4 pulses per revolution. 
-This valus is needed to calculate a correct RPM.
-- **getPulsesPerRevolution(idx)** read back PPR.
-- **setFastTach()** RPM is updated 4x per second.
-- **setSlowTach()** RPM is updated 1 x per second. 
+- **setPulsesPerRevolution(idx, val)** val should be 1..4 as a fan gives 1..4 pulses per revolution. 
+This valus is needed to calculate a correct tach and RPM.
+- **getPulsesPerRevolution(idx)** read back PulsePerRevolution. returns 1..4.
+- **setFastTach()** Tach register is updated 4x per second.
+- **setSlowTach()** Tach register is updated 1x per second. 
 - **getTach(idx)** get the raw pulses.
 - **getRPM(idx)** get a Revolutions Per Minute, based upon **getTach()**
 - **setTachLimits(idx, low, high)** 
 - **getTachLowLimits(idx)** 
 - **getTachHighLimits(idx)** 
 - **getTemperatureIRQstatus()**
-- **getFanIRQstatus()**
 - **setTemperatureIRQMask(idx)**
 - **clrTemperatureIRQMask(idx)**
 - **getTemperatureIRQMask(idx)**
+- **getFanIRQstatus()**
 - **setFanIRQMask(idx)**
 - **clrFanIRQMask(idx)**
 - **getFanIRQMask(idx)**
@@ -92,7 +93,6 @@ https://ez.analog.com/temperature_sensors/f/discussions/77540/adt7470-and-tmp05-
 software version ==> fullspeed(idx)
 - automode
 - improve documentation, readme.md file.
-- check keywords.txt
 - ...
 
 
