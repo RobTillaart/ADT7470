@@ -1,3 +1,8 @@
+
+[![Arduino CI](https://github.com/RobTillaart/ADT7470/workflows/Arduino%20CI/badge.svg)](https://github.com/marketplace/actions/arduino_ci)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RobTillaart/ADT7470/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/RobTillaart/ADT7470.svg?maxAge=3600)](https://github.com/RobTillaart/ADT7470/releases)
+
 # ADT7470 Library
 
 Arduino library for I2C ADT7470 Fan Monitoring
@@ -28,10 +33,10 @@ inductive pulse when switched off.
 
 (from datasheet)
 
-| Pin 11 (ADDR) State | Address |
-|:----:|:----:|
-| High (10 kΩ to VCC) | 010 1111 (0x5E left-justified or 0x2F right-justified) |
-| Low (10 kΩ to GND) | 010 1100 (0x58 left-justified or 0x2C right-justified) |
+| Pin 11 | (ADDR) State | Address |
+|:----:|:----:|:----:|
+| High (10 kΩ to VCC)   | 010 1111 (0x5E left-justified or 0x2F right-justified) | 
+| Low (10 kΩ to GND)    | 010 1100 (0x58 left-justified or 0x2C right-justified) |
 | Floating (no pull-up) | 010 1110 (0x5C left-justified or 0x2E right-justified) |
 
 

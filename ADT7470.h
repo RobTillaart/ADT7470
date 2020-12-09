@@ -2,7 +2,7 @@
 //
 //    FILE: ADT7470.h
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.1.1
+// VERSION: 0.1.2
 // PURPOSE: Arduino library for I2C ADT7470 Fan Monitoring
 //     URL: https://github.com/RobTillaart/ADT7470
 //          http://forum.arduino.cc/index.php?topic=363218.0
@@ -39,7 +39,7 @@ public:
   void begin();
 
   // GENERIC
-  bool     isConnected();
+  boolean  isConnected();
   uint8_t  getRevision();
   uint8_t  getDeviceID();  // should return 0x70
   uint8_t  getCompanyID(); // should return 0x41

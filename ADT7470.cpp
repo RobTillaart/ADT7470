@@ -1,16 +1,17 @@
 //
 //    FILE: ADT7470.cpp
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.1.1
+// VERSION: 0.1.2
 // PURPOSE: Arduino library for I2C ADT7470 Fan Monitoring
 //     URL: https://github.com/RobTillaart/ADT7470
 //          http://forum.arduino.cc/index.php?topic=363218.0
 //
 // HISTORY:
-// 0.0.00   2015-12-02 initial version
-// 0.0.01   2015-12-03 first beta
-// 0.1.0    2020-07-15 major refactor - first public version
-// 0.1.1    2020-08    fixes after testing
+// 0.0.00   2015-12-02  initial version
+// 0.0.01   2015-12-03  first beta
+// 0.1.0    2020-07-15  major refactor - first public version
+// 0.1.1    2020-08     fixes after testing
+// 0.1.2    2020-12-09  arduino-ci
 
 #include "ADT7470.h"
 
@@ -85,7 +86,7 @@ void ADT7470::begin()
 //
 // GENERIC
 //
-bool ADT7470::isConnected()
+boolean ADT7470::isConnected()
 {
   return ((getDeviceID() == 0x70) && (getCompanyID() == 0x41));
 }
