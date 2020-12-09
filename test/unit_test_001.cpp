@@ -28,6 +28,7 @@ unittest_setup()
 {
 }
 
+
 unittest_teardown()
 {
 }
@@ -38,7 +39,7 @@ unittest(test_constructor)
   ADT7470 ADT(0x2C);
   ADT.begin();
 
-  assertTrue(ADT.isConnected);
+  assertTrue(ADT.isConnected());
 }
 
 
