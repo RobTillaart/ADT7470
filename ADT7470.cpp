@@ -68,7 +68,7 @@ ADT7470::ADT7470(uint8_t address, TwoWire *wire)
 }
 
 
-void ADT7470::begin()
+bool ADT7470::begin()
 {
   return isConnected();
 }
@@ -77,7 +77,7 @@ void ADT7470::begin()
 //
 //  GENERIC
 //
-boolean ADT7470::isConnected()
+bool ADT7470::isConnected()
 {
   return ((getDeviceID() == 0x70) && (getCompanyID() == 0x41));
 }

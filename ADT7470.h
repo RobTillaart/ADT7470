@@ -33,10 +33,10 @@ class ADT7470
 public:
   ADT7470(uint8_t address, TwoWire *wire = &Wire);
 
-  void begin();
+  bool begin();
 
   //  GENERIC
-  boolean  isConnected();
+  bool     isConnected();
   uint8_t  getRevision();
   uint8_t  getDeviceID();     //  should return 0x70
   uint8_t  getCompanyID();    //  should return 0x41
