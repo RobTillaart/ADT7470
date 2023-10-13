@@ -46,7 +46,9 @@ unittest(test_constants)
 
 unittest(test_constructor)
 {
-  ADT7470 ADT(0x2C);
+  ADT7470 ADT(0x2C);  //  default Wire
+
+  Wire.begin();
   ADT.begin();
 
   assertFalse(ADT.isConnected());
